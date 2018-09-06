@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Pizza Bar</title>
+  <style>
+  a {
+	text-decoration:none;
+  }
+  .pad{
+	display:flex;
+	flex-direction:row;
+	text-align:center;
+  }
+  .notes{
+	border-left:1px solid gainsboro;
+  }
+  .menu{
+	display:flex;
+	flex-direction:row;
+  }
+  .offert{
+	  text-align:center;
+	  cursor:pointer;
+	  margin-left:15px;
+	  margin-right:15px;
+  }
+  .pay{
+	border-top:1px solid black;
+  }
+  </style>
+</head>
+<body>
+<div class="pad">
+	<div class="list">
+		<h1>Bar Menu</h1>
+		<div class="menu">
+			<% products.forEach(function(prod, index) { %>
+				<div class="offert">
+					<h3><%=prod.name %></h3>
+					<h3><%=prod.price %></h3>
+					<form action="/placeorder" method="POST">
+						<input type="hidden" value="<%= prod.id %>" name="indx" />
+						<input type="hidden" value="<%= prod.name %>" name="name" />
+						<input type="hidden" value="<%= prod.price %>" name="price" />
+						<input type="submit" value="Add order" />
+					</form>
+				</div>
+			<% }) %>
+		</div>
+	</div>
+
+	<div class="notes">
+		<h1>Order</h1>
+		<div class="">
+			<% shopcar.forEach(function(item, index) { %>
+				<a href="/cancelorder/<%=index%>">
+					<div class="offert">
+						<span><%=item.name %></span>
+						<span> $ </span>
+						<span><%=item.price %></span>
+					</div>
+				</a>
+			<% }) %>
+			<% if(cost && cost>0){ %>
+			<div class="pay">$<%= cost %></div>
+			<div class="save"><a href="/saveorder">Save order</a></div>
+			<% } %>
+			<a href="/shiftorders">See shift orders</a>
+		</div>
+	</div>
+</div>
+
+</body>
+</html>

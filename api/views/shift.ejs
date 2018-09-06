@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Shift Orders</title>
+  <style>
+	.borderup { 
+		border-top:1px solid gainsboro;
+		margin:5px;
+	}
+  </style>
+</head>
+<body>
+<div class="">
+	<div class="list">
+		<h1>Shift orders</h1>
+		<div class="">
+			<% shiftorders.forEach(function(item, index) { %>
+				<div class="borderup">
+					<% item.forEach(function(elem, indx) { %>
+					<div class="">
+						<span><%=elem.name %></span>
+						<span><%=elem.price %></span>
+					</div>
+					<% }) %>
+				</div>
+			<% }) %>
+		</div>
+	</div>
+</div>
+
+<div>
+	<a href="/">Back to orders</a>
+</div>
+</body>
+</html>
